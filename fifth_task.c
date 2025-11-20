@@ -1,17 +1,26 @@
-/* Task description:
-Write a function that takes two parameters: a positive integer value, and the base of a numeral system. Print the value in the given numeral system. Why is the solution much simpler using recursion than an iterative solution?
-Hint
-
-To print for example 1234 in base 10 numeral system first the 1234/10 (123) should be printed, and then the 1234%10 (4). Using recursion it is easy to reverse the order of printing.
-
-
-*/
-
-
 #include <stdio.h>
 
-int main(){
+void print_in_base(int value, int base) {
+    if (value == 0)
+        return;
+    print_in_base(value / base, base);
+    int digit = value % base;
+    if (digit < 10)
+        printf("%d", digit);
+    else
+        printf("%c", digit - 10 + 'A');
+}
 
+int main() {
+    int value = 1234;
+    int base = 16;
 
-  return 0;
+    printf("The value %d in base %d is: ", value, base);
+    if (value == 0) 
+        printf("0");
+    else
+        print_in_base(value, base);
+    printf("\n");
+
+    return 0;
 }
