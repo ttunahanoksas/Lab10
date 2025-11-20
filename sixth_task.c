@@ -1,20 +1,26 @@
-/* Task description:
-Pretty print numbers
-
-Write a function that prints the positive integer received as a parameter in an easy to read format: form groups of three digits and separate them by spaces. 
-Example: 16 077 216. Test for other values, too: 999, 1000, 12, 0, 1000222.
-
-Hint:
-Use recursion, it is the same as printing in base 1000 numeral system.
-To printf 3 digits with leading zeros use %03d in the format string.
-
-*/
-
-
 #include <stdio.h>
 
-int main(){
+void print_groups_of_three(int number) {
+    if (number == 0) {
+        return;
+    }
+    print_groups_of_three(number / 1000);
+    printf("%03d ", number % 1000);
+}
 
+int main() {
+    int values[] = {16077216, 999, 1000, 12, 0, 1000222};
+    int num_values = sizeof(values) / sizeof(values[0]);
 
-  return 0;
+    for (int i = 0; i < num_values; i++) {
+        printf("Formatted number: ");
+        if (values[i] == 0) {
+            printf("000 ");
+        } else {
+            print_groups_of_three(values[i]);
+        }
+        printf("\n");
+    }
+
+    return 0;
 }
