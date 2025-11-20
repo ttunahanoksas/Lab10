@@ -1,17 +1,23 @@
-/* Task description:
-Fibonacci
-
-The Fibonacci-series is defined as: F0=0, F1=1, Fn=Fn-1+Fn-2. Write a recursive function to calculate the nth element! Test your function for n=40! What happens? (Hint: remember the lecture topic.)
-
-Trace your program in the debugger. Start it and see how it works for n=5. You may implement your own tracing method: your fib() function should first print the value of the parameter (n).
-Use the debugger to trace the stack!
-
-*/
-
-
 #include <stdio.h>
 
-int main(){
+int fib_iterative(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
 
-return 0;
+    int prev2 = 0, prev1 = 1, current;
+
+    for (int i = 2; i <= n; i++) {
+        current = prev1 + prev2;
+        prev2 = prev1;
+        prev1 = current;
+    }
+
+    return current;
+}
+
+int main() {
+    int n = 40;
+    printf("Fibonacci of %d is: %d\n", n, fib_iterative(n));
+    
+    return 0;
 }
